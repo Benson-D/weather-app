@@ -1,0 +1,112 @@
+:root {
+  --color-grey: #dadada;
+  --color-focus: #f4f2f2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bkgrd {
+  background: url(/img/chicago.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Weather App */
+.container {
+  background-color: #000;
+  border-radius: 20px;
+  color: #fff;
+  margin: 0 2.5rem;
+  opacity: 0.85;
+  padding: 2.5rem;
+  max-width: 40rem;
+  width: 100%;
+}
+
+/* Weather search bar */
+.search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.search__input {
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 1.6rem;
+  margin-right: -3.2rem;
+  padding: 0.7rem 2rem;
+  width: 65%;
+}
+
+.search__input,
+.search__btn {
+  border: none;
+  background-color: var(--color-grey);
+  transition: all 0.2s;
+}
+
+.search__input:focus {
+  outline: none;
+  width: 69%;
+  background-color: var(--color-focus);
+}
+
+.search__input:focus + .search__btn {
+  background-color: var(--color-focus);
+}
+
+.search__btn {
+  outline: none;
+  border-radius: 50%;
+}
+
+.search__btn:active {
+  transform: translateX(-3.2px);
+}
+
+.search__icon {
+  height: 2rem;
+  width: 2rem;
+  fill: #000;
+}
+
+/* Weather Search Detail */
+.weather > * {
+  margin: 0.5rem 0;
+}
+
+.update {
+  margin-top: 2rem;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.update__time {
+  margin: 1.2rem 0;
+}
