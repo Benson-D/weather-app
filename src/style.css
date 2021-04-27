@@ -143,6 +143,18 @@ body {
   margin-bottom: 1rem;
 }
 
+.spinner {
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.spinner__svg {
+  height: 6rem;
+  width: 6rem;
+  fill: #00a2ff;
+  animation: rotate 2s infinite linear;
+}
+
 @keyframes moveIn {
   0% {
     opacity: 0;
@@ -152,6 +164,16 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 

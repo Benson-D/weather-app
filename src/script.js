@@ -2,7 +2,7 @@
 
 //Key: Private
 const api = {
-  key: "openweatherapp",
+  key: "openweathermap",
 };
 
 //Search Bar
@@ -66,25 +66,41 @@ const renderError = function () {
   invalid.insertAdjacentText("afterbegin", errMsg);
 };
 
-//Download Weather Api
-const locate = async function (city) {
-  try {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${api.key}`
-    );
-    // console.log(res);
-    const data = await res.json();
+//Render Spinner
+const renderSpinner = function (parentEl) {
+  const loading = `
+   <div class="spinner">
+    <svg class="spinner__svg">
+      <use href="img/icons.svg#icon-spinner2"></use>
+    </svg>
+   </div>`;
 
-    renderCity(data);
-  } catch (err) {
-    renderError();
-  }
+  parentEl.innerHTML = "";
+  parentEl.insertAdjacentHTML("afterbegin", loading);
 };
+//Download Weather Api
 
-search.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") locate(search.value);
-});
+window.addEventListener("load", function () {
+  const locate = async function (city) {
+    try {
+      renderSpinner(weatherApp);
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${api.key}`
+      );
 
-searchBtn.addEventListener("click", function () {
-  locate(search.value);
+      const data = await res.json();
+
+      renderCity(data);
+    } catch (err) {
+      renderError();
+    }
+  };
+
+  search.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") locate(search.value);
+  });
+
+  searchBtn.addEventListener("click", function () {
+    locate(search.value);
+  });
 });
