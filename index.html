@@ -10,28 +10,24 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/src/style.css" />
+    <script defer src="/src/script.js"></script>
   </head>
   <body class="bkgrd">
     <div class="container">
       <section class="search">
-        <input type="text" class="search__input" placeholder="Search" />
+        <input type="text" class="search__input" placeholder="Search City" />
         <button class="search__btn">
           <svg class="search__icon">
             <use href="img/icons.svg#icon-search"></use>
           </svg>
         </button>
       </section>
+      <p class="weather__error"></p>
       <section class="weather">
-        <h3 class="weather__city">Chicago</h3>
-        <h2 class="weather__temperature">57°F</h2>
-        <div class="weather__hi-low">H:61° L:28°</div>
-        <div class="weather__humidity">34%</div>
-        <div class="weather__wind">sw 8 mph</div>
-      </section>
-      <section class="update">
-        <div class="update__time">Update Weather through the day</div>
+        <h1 class="weather__greeting">
+          Welcome! Check the latest report near you.
+        </h1>
       </section>
     </div>
   </body>
