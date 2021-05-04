@@ -2,7 +2,7 @@
 
 //Key: Private
 const api = {
-  key: "openweathermap",
+  key: "openweatherapp",
 };
 
 //Search Bar
@@ -14,12 +14,6 @@ const weatherApp = document.querySelector(".weather");
 
 //Weather Detail
 const city = document.querySelector(".weather__city");
-const temperature = document.querySelector(".weather__temperature");
-const highLow = document.querySelector(".weather__hi-low");
-const humid = document.querySelector(".weather__humidity");
-const windSpeed = document.querySelector(".weather__wind");
-const weatherIcon = document.querySelector(".weather__icon");
-const descript = document.querySelector(".weather__description");
 const invalid = document.querySelector(".weather__error");
 
 //Setup Detail for City
@@ -56,30 +50,29 @@ const renderCity = function (data) {
 };
 
 //Error message
-const renderError = function () {
-  const errMsg = `Please enter a valid city.`;
-
+const renderError = function (errMsg) {
   search.value = "";
   search.blur();
 
   invalid.innerHTML = "";
   invalid.insertAdjacentText("afterbegin", errMsg);
+  document.querySelector(".spinner").remove();
 };
 
 //Render Spinner
 const renderSpinner = function (parentEl) {
   const loading = `
-   <div class="spinner">
-    <svg class="spinner__svg">
-      <use href="img/icons.svg#icon-spinner2"></use>
-    </svg>
-   </div>`;
+    <div class="spinner">
+     <svg class="spinner__svg">
+       <use href="img/icons.svg#icon-spinner2"></use>
+     </svg>
+    </div>`;
 
   parentEl.innerHTML = "";
-  parentEl.insertAdjacentHTML("afterbegin", loading);
+  parentEl.insertAdjacentHTML("beforeend", loading);
 };
-//Download Weather Api
 
+//Download Weather Api
 window.addEventListener("load", function () {
   const locate = async function (city) {
     try {
@@ -88,11 +81,13 @@ window.addEventListener("load", function () {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${api.key}`
       );
 
+      if (!res.ok) throw new Error(`Please enter a valid city`);
+
       const data = await res.json();
 
       renderCity(data);
     } catch (err) {
-      renderError();
+      renderError(err.message);
     }
   };
 
